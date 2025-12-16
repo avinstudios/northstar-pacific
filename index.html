@@ -43,6 +43,17 @@ header .brand {
   justify-content:space-between;
 }
 
+header .brand div {
+  display: flex;
+  align-items: center;
+}
+
+header .brand img {
+  height: 40px;
+  margin-right: 12px;
+  vertical-align: middle;
+}
+
 header h1 {
   margin:0;
   font-size:22px;
@@ -182,8 +193,11 @@ footer {
 <header>
   <div class="brand">
     <div>
-      <h1>NorthStar Pacific</h1>
-      <span>Bridging Horizons Across the Pacific</span>
+      <img src="https://i.imgur.com/6XG0Dwl.png" alt="NorthStar Pacific Logo">
+      <div>
+        <h1>NorthStar Pacific</h1>
+        <span>Bridging Horizons Across the Pacific</span>
+      </div>
     </div>
     <span>Manage Booking</span>
   </div>
@@ -302,7 +316,7 @@ function updateBooking() {
   });
   document.getElementById('lastUpdated').innerText = "Last updated: " + formatted;
 
-  // Randomly reduce available seats to make it feel realistic
+  // Randomly increase booked seats to make it feel realistic
   const randomBooked = Math.min(totalSeats, bookedSeats + Math.floor(Math.random() * 3));
   bookedSeats = randomBooked;
 
