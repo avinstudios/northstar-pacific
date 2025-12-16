@@ -2,137 +2,274 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>NorthStar Pacific | Manage Booking</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NorthStar Pacific – Booking Confirmation</title>
 
 <style>
+:root {
+  --navy:#0b1f3a;
+  --navy-2:#102a4c;
+  --accent:#2563eb;
+  --bg:#f3f4f6;
+  --card:#ffffff;
+  --border:#e5e7eb;
+  --text:#111827;
+  --muted:#6b7280;
+  --success:#16a34a;
+}
+
+* { box-sizing:border-box; }
+
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial;
-  background: #f3f4f6;
-  color: #111827;
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--bg);
+  color:var(--text);
 }
 
-.header {
-  background: #0b1d3a;
-  color: white;
-  padding: 16px;
-  text-align: center;
-  font-weight: 600;
-  font-size: 20px;
+/* HEADER */
+header {
+  background:linear-gradient(180deg,var(--navy),var(--navy-2));
+  color:#fff;
+  padding:18px 24px;
+  position:sticky;
+  top:0;
+  z-index:10;
 }
 
-.subheader {
-  font-size: 12px;
-  opacity: 0.8;
+header .brand {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 }
 
-.update {
-  background: #e5e7eb;
-  color: #374151;
-  text-align: center;
-  padding: 6px;
-  font-size: 12px;
+header h1 {
+  margin:0;
+  font-size:22px;
+  letter-spacing:.4px;
 }
 
+header span {
+  font-size:13px;
+  opacity:.85;
+}
+
+/* NAV */
+nav {
+  margin-top:10px;
+  font-size:14px;
+}
+
+nav a {
+  color:#cfd8e3;
+  margin-right:18px;
+  text-decoration:none;
+}
+
+/* LAYOUT */
+.container {
+  max-width:1050px;
+  margin:28px auto;
+  padding:0 18px;
+}
+
+/* UPDATE BANNER */
+.update-banner {
+  background:#e5e7eb;
+  color:#374151;
+  padding:6px 12px;
+  border-radius:6px;
+  max-width:260px;
+  margin:0 auto 16px;
+  font-size:12px;
+  text-align:center;
+  box-shadow:0 2px 4px rgba(0,0,0,0.08);
+}
+
+/* CARD */
 .card {
-  background: white;
-  margin: 16px;
-  padding: 18px;
-  border-radius: 14px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+  background:var(--card);
+  border-radius:12px;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+  padding:22px;
+  margin-bottom:22px;
 }
 
-.section-title {
-  font-weight: 600;
-  margin-bottom: 8px;
-  font-size: 16px;
+/* STATUS */
+.status {
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  background:#e6f7ed;
+  color:var(--success);
+  padding:6px 12px;
+  border-radius:999px;
+  font-size:13px;
+  font-weight:600;
 }
 
-.row {
-  display: flex;
-  justify-content: space-between;
-  margin: 6px 0;
-  font-size: 14px;
+/* GRID */
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:18px;
+  margin-top:18px;
 }
 
-.price {
-  font-size: 22px;
-  font-weight: 700;
-  color: #0b1d3a;
+.box {
+  background:#f9fafb;
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:14px;
 }
 
+.label {
+  font-size:12px;
+  color:var(--muted);
+}
+
+.value {
+  font-weight:600;
+  margin-top:4px;
+}
+
+/* TABLE */
+table {
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px;
+}
+
+td {
+  padding:12px 0;
+  border-bottom:1px solid var(--border);
+}
+
+.total {
+  font-size:18px;
+  font-weight:700;
+}
+
+/* BUTTON */
 .button {
-  background: #0b1d3a;
-  color: white;
-  text-align: center;
-  padding: 14px;
-  border-radius: 10px;
-  margin-top: 16px;
-  font-weight: 600;
-  cursor: pointer;
+  background:var(--accent);
+  color:#fff;
+  padding:12px 18px;
+  border-radius:10px;
+  text-decoration:none;
+  font-weight:600;
+  display:inline-block;
+  margin-top:16px;
 }
 
-.button:hover {
-  background: #112b50;
+/* FOOTER */
+footer {
+  font-size:11px;
+  color:var(--muted);
+  text-align:center;
+  margin:30px 0;
 }
-
-.footer {
-  text-align: center;
-  font-size: 10px; /* smaller text */
-  color: #6b7280;
-  margin: 20px;
-}
-
 </style>
 </head>
 
 <body>
 
-<div class="header">
-  NorthStar Pacific
-  <div class="subheader">Trans‑Pacific Air Services</div>
+<header>
+  <div class="brand">
+    <div>
+      <h1>NorthStar Pacific</h1>
+      <span>Bridging Horizons Across the Pacific</span>
+    </div>
+    <span>Manage Booking</span>
+  </div>
+  <nav>
+    <a>Book</a>
+    <a>My Trips</a>
+    <a>Check‑In</a>
+    <a>Flight Status</a>
+    <a>Support</a>
+  </nav>
+</header>
+
+<div class="container">
+
+  <!-- LAST UPDATED -->
+  <div class="update-banner">
+    Last updated: December 17, 6:42 AM
+  </div>
+
+  <!-- CONFIRMATION -->
+  <div class="card">
+    <h2 style="margin:0 0 6px;">Your trip is confirmed</h2>
+    <p style="margin:0 0 14px;color:var(--muted);">
+      Booking Reference: <strong>NS‑B7X92Q</strong>
+    </p>
+    <div class="status">✔ Confirmed</div>
+
+    <div class="grid">
+      <div class="box">
+        <div class="label">Route</div>
+        <div class="value">Dallas–Fort Worth (DFW) → Tokyo Haneda (HND)</div>
+      </div>
+      <div class="box">
+        <div class="label">Flight</div>
+        <div class="value">NS 902 · Boeing 787‑10</div>
+      </div>
+      <div class="box">
+        <div class="label">Departure</div>
+        <div class="value">December 17 · 9:36 PM</div>
+      </div>
+      <div class="box">
+        <div class="label">Arrival</div>
+        <div class="value">2:05 AM (+1 Day)</div>
+      </div>
+      <div class="box">
+        <div class="label">Cabin</div>
+        <div class="value">Premium Plus (Business‑Style)</div>
+      </div>
+      <div class="box">
+        <div class="label">Passengers</div>
+        <div class="value">10</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRICE -->
+  <div class="card">
+    <h3>Fare Summary</h3>
+    <table>
+      <tr>
+        <td>Premium Plus Fare (10 passengers)</td>
+        <td align="right">$24,800.00</td>
+      </tr>
+      <tr>
+        <td>International Taxes & Fees</td>
+        <td align="right">$3,150.00</td>
+      </tr>
+      <tr>
+        <td class="total">Total Paid</td>
+        <td class="total" align="right">$27,950.00 USD</td>
+      </tr>
+    </table>
+
+    <a class="button">View Boarding Passes</a>
+  </div>
+
+  <!-- TERMINAL -->
+  <div class="card">
+    <h3>Departure Information</h3>
+    <p>
+      <strong>Terminal:</strong> DFW Terminal D<br>
+      <strong>Gate:</strong> D27<br>
+      <strong>Boarding:</strong> 8:35 PM
+    </p>
+  </div>
+
 </div>
 
-<div class="update" id="lastUpdated">
-  Last updated: December 17, 6:42 AM
-</div>
-
-<div class="card">
-  <div class="section-title">Booking Confirmation</div>
-
-  <div class="row"><span>Route</span><span>Dallas (DFW) → Tokyo (HND)</span></div>
-  <div class="row"><span>Departure</span><span>Dec 17 · 9:36 PM</span></div>
-  <div class="row"><span>Cabin</span><span>Business Class</span></div>
-  <div class="row"><span>Passengers</span><span>10</span></div>
-  <div class="row"><span>Aircraft</span><span>Boeing 787‑9</span></div>
-
-  <hr style="margin:12px 0">
-
-  <div class="row"><span>Total Fare</span><span class="price">$28,940</span></div>
-
-  <div class="button" onclick="showBoarding()">View Boarding Details</div>
-  <div class="button" style="margin-top:8px;" onclick="refreshPage()">Refresh Page</div>
-
-</div>
-
-<div class="footer">
-  Fictional airline website for demonstration purposes only. No real bookings. The owner is not responsible for any misuse.
-</div>
-
-<script>
-// Function to simulate boarding details
-function showBoarding() {
-  alert("Boarding details are fictional.\nGate: A12\nSeat: 2A-2J\nBoarding Time: 9:00 PM");
-}
-
-// Function to refresh the "last updated" timestamp
-function refreshPage() {
-  const now = new Date();
-  const formatted = now.toLocaleString('en-US', { month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric', hour12: true });
-  document.getElementById('lastUpdated').innerText = "Last updated: " + formatted;
-}
-</script>
+<footer>
+  NorthStar Pacific is a fictional airline created for entertainment and demonstration purposes only.
+</footer>
 
 </body>
 </html>
