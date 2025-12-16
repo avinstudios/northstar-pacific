@@ -79,7 +79,7 @@ nav a {
   color:#374151;
   padding:6px 12px;
   border-radius:6px;
-  max-width:260px;
+  max-width:300px;
   margin:0 auto 16px;
   font-size:12px;
   text-align:center;
@@ -160,11 +160,16 @@ td {
   font-weight:600;
   display:inline-block;
   margin-top:16px;
+  cursor:pointer;
+}
+
+.button:hover {
+  background:#1e4ed8;
 }
 
 /* FOOTER */
 footer {
-  font-size:11px;
+  font-size:10px;
   color:var(--muted);
   text-align:center;
   margin:30px 0;
@@ -194,7 +199,7 @@ footer {
 <div class="container">
 
   <!-- LAST UPDATED -->
-  <div class="update-banner">
+  <div class="update-banner" id="lastUpdated">
     Last updated: December 17, 6:42 AM
   </div>
 
@@ -229,7 +234,7 @@ footer {
       </div>
       <div class="box">
         <div class="label">Passengers</div>
-        <div class="value">10</div>
+        <div class="value" id="passengerCount">10 / 40 seats booked</div>
       </div>
     </div>
   </div>
@@ -252,7 +257,8 @@ footer {
       </tr>
     </table>
 
-    <a class="button">View Boarding Passes</a>
+    <a class="button" onclick="showBoarding()">View Boarding Passes</a>
+    <a class="button" onclick="updateBooking()" style="margin-left:8px;">Refresh</a>
   </div>
 
   <!-- TERMINAL -->
@@ -268,8 +274,41 @@ footer {
 </div>
 
 <footer>
-  NorthStar Pacific is a fictional airline created for entertainment and demonstration purposes only.
+  NorthStar Pacific is a fictional airline created for entertainment and demonstration purposes only. The owner is not responsible for any misuse.
 </footer>
+
+<script>
+let totalSeats = 40;
+let bookedSeats = 10;
+
+function showBoarding() {
+  alert(
+    "Boarding details (fictional):\n\n" +
+    "Gate: D27\n" +
+    "Boarding Time: 8:35 PM\n" +
+    "Seats: 2A-2J"
+  );
+}
+
+// Simulate refreshing the booking: show random available seats
+function updateBooking() {
+  const now = new Date();
+  const formatted = now.toLocaleString('en-US', {
+    month:'long',
+    day:'numeric',
+    hour:'numeric',
+    minute:'numeric',
+    hour12:true
+  });
+  document.getElementById('lastUpdated').innerText = "Last updated: " + formatted;
+
+  // Randomly reduce available seats to make it feel realistic
+  const randomBooked = Math.min(totalSeats, bookedSeats + Math.floor(Math.random() * 3));
+  bookedSeats = randomBooked;
+
+  document.getElementById('passengerCount').innerText = `${bookedSeats} / ${totalSeats} seats booked`;
+}
+</script>
 
 </body>
 </html>
