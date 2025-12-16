@@ -70,14 +70,20 @@ body {
   border-radius: 10px;
   margin-top: 16px;
   font-weight: 600;
+  cursor: pointer;
+}
+
+.button:hover {
+  background: #112b50;
 }
 
 .footer {
   text-align: center;
-  font-size: 11px;
+  font-size: 10px; /* smaller text */
   color: #6b7280;
   margin: 20px;
 }
+
 </style>
 </head>
 
@@ -88,7 +94,7 @@ body {
   <div class="subheader">Trans‑Pacific Air Services</div>
 </div>
 
-<div class="update">
+<div class="update" id="lastUpdated">
   Last updated: December 17, 6:42 AM
 </div>
 
@@ -105,12 +111,28 @@ body {
 
   <div class="row"><span>Total Fare</span><span class="price">$28,940</span></div>
 
-  <div class="button">View Boarding Details</div>
+  <div class="button" onclick="showBoarding()">View Boarding Details</div>
+  <div class="button" style="margin-top:8px;" onclick="refreshPage()">Refresh Page</div>
+
 </div>
 
 <div class="footer">
-  Fictional airline website for demonstration purposes only. No real bookings.
+  Fictional airline website for demonstration purposes only. No real bookings. The owner is not responsible for any misuse.
 </div>
+
+<script>
+// Function to simulate boarding details
+function showBoarding() {
+  alert("Boarding details are fictional.\nGate: A12\nSeat: 2A-2J\nBoarding Time: 9:00 PM");
+}
+
+// Function to refresh the "last updated" timestamp
+function refreshPage() {
+  const now = new Date();
+  const formatted = now.toLocaleString('en-US', { month: 'long', day: 'numeric', hour: 'numeric', minute:'numeric', hour12: true });
+  document.getElementById('lastUpdated').innerText = "Last updated: " + formatted;
+}
+</script>
 
 </body>
 </html>
