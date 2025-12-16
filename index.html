@@ -43,148 +43,31 @@ header .brand {
   justify-content:space-between;
 }
 
-header .brand div {
-  display: flex;
-  align-items: center;
-}
-
-header .brand img {
-  height: 40px;
-  margin-right: 12px;
-  vertical-align: middle;
-}
-
-header h1 {
-  margin:0;
-  font-size:22px;
-  letter-spacing:.4px;
-}
-
-header span {
-  font-size:13px;
-  opacity:.85;
-}
+header h1 { margin:0; font-size:22px; letter-spacing:.4px; }
+header span { font-size:13px; opacity:.85; }
 
 /* NAV */
-nav {
-  margin-top:10px;
-  font-size:14px;
-}
-
-nav a {
-  color:#cfd8e3;
-  margin-right:18px;
-  text-decoration:none;
-}
+nav { margin-top:10px; font-size:14px; }
+nav a { color:#cfd8e3; margin-right:18px; text-decoration:none; }
 
 /* LAYOUT */
-.container {
-  max-width:1050px;
-  margin:28px auto;
-  padding:0 18px;
-}
+.container { max-width:1050px; margin:28px auto; padding:0 18px; }
+.update-banner { background:#e5e7eb; color:#374151; padding:6px 12px; border-radius:6px; max-width:300px; margin:0 auto 16px; font-size:12px; text-align:center; box-shadow:0 2px 4px rgba(0,0,0,0.08); }
+.card { background:var(--card); border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.08); padding:22px; margin-bottom:22px; }
+.status { display:inline-flex; align-items:center; gap:6px; background:#e6f7ed; color:var(--success); padding:6px 12px; border-radius:999px; font-size:13px; font-weight:600; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; margin-top:18px; }
+.box { background:#f9fafb; border:1px solid var(--border); border-radius:10px; padding:14px; }
+.label { font-size:12px; color:var(--muted); }
+.value { font-weight:600; margin-top:4px; }
+.button { background:var(--accent); color:#fff; padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:600; display:inline-block; margin-top:16px; cursor:pointer; }
+.button:hover { background:#1e4ed8; }
+footer { font-size:10px; color:var(--muted); text-align:center; margin:30px 0; }
 
-/* UPDATE BANNER */
-.update-banner {
-  background:#e5e7eb;
-  color:#374151;
-  padding:6px 12px;
-  border-radius:6px;
-  max-width:300px;
-  margin:0 auto 16px;
-  font-size:12px;
-  text-align:center;
-  box-shadow:0 2px 4px rgba(0,0,0,0.08);
-}
-
-/* CARD */
-.card {
-  background:var(--card);
-  border-radius:12px;
-  box-shadow:0 10px 30px rgba(0,0,0,.08);
-  padding:22px;
-  margin-bottom:22px;
-}
-
-/* STATUS */
-.status {
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  background:#e6f7ed;
-  color:var(--success);
-  padding:6px 12px;
-  border-radius:999px;
-  font-size:13px;
-  font-weight:600;
-}
-
-/* GRID */
-.grid {
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:18px;
-  margin-top:18px;
-}
-
-.box {
-  background:#f9fafb;
-  border:1px solid var(--border);
-  border-radius:10px;
-  padding:14px;
-}
-
-.label {
-  font-size:12px;
-  color:var(--muted);
-}
-
-.value {
-  font-weight:600;
-  margin-top:4px;
-}
-
-/* TABLE */
-table {
-  width:100%;
-  border-collapse:collapse;
-  font-size:14px;
-}
-
-td {
-  padding:12px 0;
-  border-bottom:1px solid var(--border);
-}
-
-.total {
-  font-size:18px;
-  font-weight:700;
-}
-
-/* BUTTON */
-.button {
-  background:var(--accent);
-  color:#fff;
-  padding:12px 18px;
-  border-radius:10px;
-  text-decoration:none;
-  font-weight:600;
-  display:inline-block;
-  margin-top:16px;
-  cursor:pointer;
-}
-
-.button:hover {
-  background:#1e4ed8;
-}
-
-/* FOOTER */
-footer {
-  font-size:10px;
-  color:var(--muted);
-  text-align:center;
-  margin:30px 0;
-}
+/* SEAT MAP */
+.seat-map { display:grid; grid-template-columns:repeat(10,40px); gap:6px; margin-top:12px; justify-content:center; }
+.seat { width:40px; height:40px; border:1px solid var(--border); border-radius:6px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+.seat.booked { background:#2563eb; color:#fff; cursor:default; }
+.countdown { font-size:14px; font-weight:600; margin-top:8px; color:#2563eb; }
 </style>
 </head>
 
@@ -193,12 +76,8 @@ footer {
 <header>
   <div class="brand">
     <div>
-      <!-- Logo added here -->
-      <img src="https://i.imgur.com/6XG0Dwl.png" alt="NorthStar Pacific Logo">
-      <div>
-        <h1>NorthStar Pacific</h1>
-        <span>Bridging Horizons Across the Pacific</span>
-      </div>
+      <h1>NorthStar Pacific</h1>
+      <span>Bridging Horizons Across the Pacific</span>
     </div>
     <span>Manage Booking</span>
   </div>
@@ -238,6 +117,7 @@ footer {
       <div class="box">
         <div class="label">Departure</div>
         <div class="value">December 17 · 9:36 PM</div>
+        <div class="countdown" id="countdown">Calculating...</div>
       </div>
       <div class="box">
         <div class="label">Arrival</div>
@@ -249,79 +129,69 @@ footer {
       </div>
       <div class="box">
         <div class="label">Passengers</div>
-        <div class="value" id="passengerCount">10 / 40 seats booked</div>
+        <div class="value">10 / 40 seats booked</div>
       </div>
     </div>
   </div>
 
-  <!-- PRICE -->
+  <!-- SEAT MAP -->
   <div class="card">
-    <h3>Fare Summary</h3>
-    <table>
-      <tr>
-        <td>Premium Plus Fare (10 passengers)</td>
-        <td align="right">$24,800.00</td>
-      </tr>
-      <tr>
-        <td>International Taxes & Fees</td>
-        <td align="right">$3,150.00</td>
-      </tr>
-      <tr>
-        <td class="total">Total Paid</td>
-        <td class="total" align="right">$27,950.00 USD</td>
-      </tr>
-    </table>
-
-    <a class="button" onclick="showBoarding()">View Boarding Passes</a>
-    <a class="button" onclick="updateBooking()" style="margin-left:8px;">Refresh</a>
+    <h3>Seat Map</h3>
+    <div class="seat-map" id="seatMap"></div>
   </div>
 
-  <!-- TERMINAL -->
+  <!-- CHECK-IN -->
   <div class="card">
-    <h3>Departure Information</h3>
-    <p>
-      <strong>Terminal:</strong> DFW Terminal D<br>
-      <strong>Gate:</strong> D27<br>
-      <strong>Boarding:</strong> 8:35 PM
-    </p>
+    <h3>Check-In</h3>
+    <button class="button" onclick="fakeCheckIn()">Check In Now</button>
   </div>
 
 </div>
 
 <footer>
-  NorthStar Pacific is a fictional airline created for entertainment and demonstration purposes only. The owner is not responsible for any misuse.
+  NorthStar Pacific is a fictional airline created for entertainment purposes only. The owner is not responsible for misuse.
 </footer>
 
 <script>
-let totalSeats = 40;
-let bookedSeats = 10;
+// Countdown timer
+function updateCountdown() {
+  const departure = new Date();
+  departure.setMonth(11); // December
+  departure.setDate(17);
+  departure.setHours(21,36,0,0); // 9:36 PM
+  const now = new Date();
+  const diff = departure - now;
+  if(diff>0){
+    const h=Math.floor(diff/1000/60/60);
+    const m=Math.floor((diff/1000/60)%60);
+    const s=Math.floor((diff/1000)%60);
+    document.getElementById('countdown').innerText = `Flight departs in ${h}h ${m}m ${s}s`;
+  } else {
+    document.getElementById('countdown').innerText = "Flight departed";
+  }
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
 
-function showBoarding() {
-  alert(
-    "Boarding details:\n\n" +
-    "Gate: D27\n" +
-    "Boarding Time: 8:35 PM\n" +
-    "Seats: 2A-2J"
-  );
+// Seat map
+const seatMap = document.getElementById('seatMap');
+const totalSeats = 40;
+const bookedSeats = 10;
+for(let i=1;i<=totalSeats;i++){
+  const seat = document.createElement('div');
+  seat.classList.add('seat');
+  seat.innerText=i;
+  if(i<=bookedSeats){
+    seat.classList.add('booked');
+  } else {
+    seat.addEventListener('click',()=>{ alert(`Seat ${i} is available.`); });
+  }
+  seatMap.appendChild(seat);
 }
 
-// Simulate refreshing the booking: show random available seats
-function updateBooking() {
-  const now = new Date();
-  const formatted = now.toLocaleString('en-US', {
-    month:'long',
-    day:'numeric',
-    hour:'numeric',
-    minute:'numeric',
-    hour12:true
-  });
-  document.getElementById('lastUpdated').innerText = "Last updated: " + formatted;
-
-  // Randomly increase booked seats to make it feel realistic
-  const randomBooked = Math.min(totalSeats, bookedSeats + Math.floor(Math.random() * 3));
-  bookedSeats = randomBooked;
-
-  document.getElementById('passengerCount').innerText = `${bookedSeats} / ${totalSeats} seats booked`;
+// Fake check-in
+function fakeCheckIn(){
+  alert("You have successfully checked in!\nBoarding Pass will be available at the gate.");
 }
 </script>
 
