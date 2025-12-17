@@ -31,7 +31,7 @@ body {
 header {
   background:linear-gradient(180deg,var(--navy),var(--navy-2));
   color:#fff;
-  padding:18px 24px;
+  padding:16px;
   position:sticky;
   top:0;
   z-index:10;
@@ -41,33 +41,46 @@ header .brand {
   display:flex;
   align-items:center;
   justify-content:space-between;
+  flex-wrap:wrap;
 }
 
-header h1 { margin:0; font-size:22px; letter-spacing:.4px; }
-header span { font-size:13px; opacity:.85; }
+header h1 { margin:0; font-size:20px; letter-spacing:.4px; }
+header span { font-size:12px; opacity:.85; }
 
 /* NAV */
-nav { margin-top:10px; font-size:14px; }
-nav a { color:#cfd8e3; margin-right:18px; text-decoration:none; }
+nav { margin-top:8px; font-size:14px; }
+nav a { color:#cfd8e3; margin-right:12px; text-decoration:none; font-size:14px; }
 
 /* LAYOUT */
-.container { max-width:1050px; margin:28px auto; padding:0 18px; }
+.container { max-width:1050px; margin:20px auto; padding:0 12px; }
 .update-banner { background:#e5e7eb; color:#374151; padding:6px 12px; border-radius:6px; max-width:300px; margin:0 auto 16px; font-size:12px; text-align:center; box-shadow:0 2px 4px rgba(0,0,0,0.08); }
-.card { background:var(--card); border-radius:12px; box-shadow:0 10px 30px rgba(0,0,0,.08); padding:22px; margin-bottom:22px; }
+.card { background:var(--card); border-radius:12px; box-shadow:0 8px 20px rgba(0,0,0,.08); padding:18px; margin-bottom:20px; }
 .status { display:inline-flex; align-items:center; gap:6px; background:#e6f7ed; color:var(--success); padding:6px 12px; border-radius:999px; font-size:13px; font-weight:600; }
-.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:18px; margin-top:18px; }
-.box { background:#f9fafb; border:1px solid var(--border); border-radius:10px; padding:14px; }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; margin-top:12px; }
+.box { background:#f9fafb; border:1px solid var(--border); border-radius:10px; padding:12px; }
 .label { font-size:12px; color:var(--muted); }
-.value { font-weight:600; margin-top:4px; }
-.button { background:var(--accent); color:#fff; padding:12px 18px; border-radius:10px; text-decoration:none; font-weight:600; display:inline-block; margin-top:16px; cursor:pointer; }
+.value { font-weight:600; margin-top:4px; font-size:14px; }
+
+/* BUTTON */
+.button { background:var(--accent); color:#fff; padding:10px 16px; border-radius:10px; text-decoration:none; font-weight:600; display:inline-block; margin-top:12px; cursor:pointer; font-size:14px; text-align:center; }
 .button:hover { background:#1e4ed8; }
-footer { font-size:10px; color:var(--muted); text-align:center; margin:30px 0; }
+
+/* FOOTER */
+footer { font-size:10px; color:var(--muted); text-align:center; margin:20px 0; }
 
 /* SEAT MAP */
-.seat-map { display:grid; grid-template-columns:repeat(10,40px); gap:6px; margin-top:12px; justify-content:center; }
-.seat { width:40px; height:40px; border:1px solid var(--border); border-radius:6px; display:flex; align-items:center; justify-content:center; cursor:pointer; }
+.seat-map { display:grid; grid-template-columns:repeat(10,1fr); gap:6px; margin-top:12px; overflow-x:auto; }
+.seat { min-width:30px; height:30px; border:1px solid var(--border); border-radius:6px; display:flex; align-items:center; justify-content:center; cursor:pointer; font-size:12px; }
 .seat.booked { background:#2563eb; color:#fff; cursor:default; }
-.countdown { font-size:14px; font-weight:600; margin-top:8px; color:#2563eb; }
+.countdown { font-size:14px; font-weight:600; margin-top:6px; color:#2563eb; word-wrap:break-word; }
+
+/* MOBILE ADJUSTMENTS */
+@media (max-width:480px) {
+  header h1 { font-size:18px; }
+  nav { font-size:12px; }
+  .box { padding:10px; }
+  .seat-map { grid-template-columns:repeat(5,1fr); }
+}
 </style>
 </head>
 
@@ -92,12 +105,10 @@ footer { font-size:10px; color:var(--muted); text-align:center; margin:30px 0; }
 
 <div class="container">
 
-  <!-- LAST UPDATED -->
   <div class="update-banner" id="lastUpdated">
     Last updated: December 17, 6:42 AM
   </div>
 
-  <!-- CONFIRMATION -->
   <div class="card">
     <h2 style="margin:0 0 6px;">Your trip is confirmed</h2>
     <p style="margin:0 0 14px;color:var(--muted);">
@@ -116,8 +127,9 @@ footer { font-size:10px; color:var(--muted); text-align:center; margin:30px 0; }
       </div>
       <div class="box">
         <div class="label">Departure</div>
-        <div class="value">December 17 · 9:36 PM</div>
-        <div class="countdown" id="countdown">Calculating...</div>
+        <div class="value">December 17 · 9:36 PM
+          <div class="countdown" id="countdown">Calculating...</div>
+        </div>
       </div>
       <div class="box">
         <div class="label">Arrival</div>
@@ -134,13 +146,11 @@ footer { font-size:10px; color:var(--muted); text-align:center; margin:30px 0; }
     </div>
   </div>
 
-  <!-- SEAT MAP -->
   <div class="card">
     <h3>Seat Map</h3>
     <div class="seat-map" id="seatMap"></div>
   </div>
 
-  <!-- CHECK-IN -->
   <div class="card">
     <h3>Check-In</h3>
     <button class="button" onclick="fakeCheckIn()">Check In Now</button>
